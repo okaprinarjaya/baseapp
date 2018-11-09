@@ -80,7 +80,7 @@
       </div>
 
       <div class="form-actions">
-        <?= $this->Form->button(__d('CakeDC/Users', 'Save'), ['class' => 'btn btn-primary']) ?>
+        <?= $this->Form->button('<i class="fa fa-save"></i> ' . __d('CakeDC/Users', 'Save'), ['class' => 'btn btn-primary', 'escape' => false]) ?>
       </div>
     <?= $this->Form->end() ?>
   </div>

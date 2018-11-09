@@ -1,3 +1,11 @@
 .col-form-label {
   flex-basis: 180px;
 }
+
+.card-actions {
+  margin-bottom: 5px; padding-left: 14px;
+}
+
+.card-actions .btn-ghost-primary {
+  display: inline-block; width: auto;
+}
