@@ -50,7 +50,7 @@
 
     <ul class="pagination">
       <?php
-      $this->Paginator->templates([
+      $this->Paginator->setTemplates([
         'prevActive' => '<li class="page-item"><a class="page-link" href="{{url}}">{{text}}</a></li>',
         'prevDisabled' => '<li class="page-item disabled"><a class="page-link" href="{{url}}">{{text}}</a></li>',
         'nextActive' => '<li class="page-item"><a class="page-link" href="{{url}}">{{text}}</a></li>',

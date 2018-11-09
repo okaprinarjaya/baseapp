@@ -1,4 +1,6 @@
-<?php echo $this->Html->docType(); ?>
+<?php
+echo $this->Html->docType();
+?>
 
 <html>
   <head>
@@ -19,8 +21,9 @@
     ]);
     ?>
   </head>
+
   <body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
-  <header class="app-header navbar">
+    <header class="app-header navbar">
       <button class="navbar-toggler sidebar-toggler d-lg-none mr-auto" type="button" data-toggle="sidebar-show">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -39,90 +42,65 @@
           <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
             <img class="img-avatar" src="/base_app/assets/img/avatar.jpg" alt="admin@bootstrapmaster.com">
           </a>
+
           <div class="dropdown-menu dropdown-menu-right">
             <div class="dropdown-header text-center">
               <strong>Account</strong>
             </div>
-            <a class="dropdown-item" href="#">
-              <i class="fa fa-key"></i> Change password
+
+            <a class="dropdown-item" href="/profile">
+              <i class="icon-emotsmile icons"></i> About me
             </a>
-            <a class="dropdown-item" href="#">
-              <i class="fa fa-lock"></i> Logout</a>
+
+            <?php
+            echo $this->Html->link(
+              '<i class="fa fa-key"></i> ' . __d('CakeDC/Users', 'Change password'),
+              ['action' => 'changePassword', $this->request->getSession()->read('Auth.User.id')],
+              ['class' => 'dropdown-item', 'escape' => false]
+            );
+            ?>
+
+            <a class="dropdown-item" href="/users/users/logout">
+              <i class="fa fa-lock"></i> Logout
+            </a>
           </div>
         </li>
       </ul>
     </header>
 
     <div class="app-body">
+
       <div class="sidebar">
         <nav class="sidebar-nav">
           <ul class="nav">
           <li class="nav-title">Application Menus</li>
             <li class="nav-item">
-              <a class="nav-link" href="colors.html">
-                <i class="nav-icon icon-drop"></i> Colors</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="typography.html">
-                <i class="nav-icon icon-pencil"></i> Typography</a>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link" href="charts.html">
-                <i class="nav-icon icon-pie-chart"></i> Charts</a>
-            </li>
-
-
-            <li class="nav-item">
-              <a class="nav-link" href="widgets.html">
-                <i class="nav-icon icon-calculator"></i> Widgets
-                <span class="badge badge-primary">NEW</span>
+              <a class="nav-link" href="/">
+                <i class="nav-icon icon-drop"></i> Colors
               </a>
             </li>
 
             <li class="nav-title">Base Manage</li>
+
             <li class="nav-item">
               <a class="nav-link" href="/users/users">
-                <i class="nav-icon icon-user"></i> Users</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="typography.html">
-                <i class="nav-icon icon-pencil"></i> Menus</a>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link" href="charts.html">
-                <i class="nav-icon icon-pie-chart"></i> Charts</a>
-            </li>
-
-
-            <li class="nav-item">
-              <a class="nav-link" href="widgets.html">
-                <i class="nav-icon icon-calculator"></i> Widgets
-                <span class="badge badge-primary">NEW</span>
+                <i class="nav-icon icon-user"></i> Users
               </a>
             </li>
-
           </ul>
         </nav>
+
         <button class="sidebar-minimizer brand-minimizer" type="button"></button>
       </div>
-      <main class="main">
-        <!-- Breadcrumb-->
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item">Home</li>
-          <li class="breadcrumb-item">
-            <a href="#">Admin</a>
-          </li>
-          <li class="breadcrumb-item active">Dashboard</li>
 
-        </ol>
-        <div class="container-fluid">
+      <main class="main">
+        <div class="container-fluid" style="padding-top: 10px;">
           <div class="animated fadeIn">
           <?php echo $this->fetch('content'); ?>
           </div>
         </div>
       </main>
+
     </div>
 
     <?php
