@@ -10,3 +10,8 @@ Router::plugin(
         $routes->fallbacks(DashedRoute::class);
     }
 );
+
+Router::scope('/base-app', function (RouteBuilder $routes) {
+  $routes->connect('/users', ['plugin' => 'CakeDC/Users', 'controller' => 'Users', 'action' => 'index']);
+  $routes->fallbacks(DashedRoute::class);
+});

@@ -70,28 +70,7 @@ echo $this->Html->docType();
 
     <div class="app-body">
 
-      <div class="sidebar">
-        <nav class="sidebar-nav">
-          <ul class="nav">
-          <li class="nav-title">Application Menus</li>
-            <li class="nav-item">
-              <a class="nav-link" href="/">
-                <i class="nav-icon icon-drop"></i> Colors
-              </a>
-            </li>
-
-            <li class="nav-title">Base Manage</li>
-
-            <li class="nav-item">
-              <a class="nav-link" href="/users/users">
-                <i class="nav-icon icon-user"></i> Users
-              </a>
-            </li>
-          </ul>
-        </nav>
-
-        <button class="sidebar-minimizer brand-minimizer" type="button"></button>
-      </div>
+      <?php echo $this->element('menunav'); ?>
 
       <main class="main">
         <div class="container-fluid" style="padding-top: 10px;">

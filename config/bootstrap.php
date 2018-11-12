@@ -199,4 +199,4 @@ Type::build('timestamp')
 //Inflector::rules('transliteration', ['/å/' => 'aa']);
 
 Plugin::load('CakeDC/Users', ['routes' => true, 'bootstrap' => true]);
-Plugin::load('BaseApp');
+Plugin::load('BaseApp', ['routes' => true, 'bootstrap' => true]);
