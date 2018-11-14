@@ -45,3 +45,7 @@
 .children-menu {
   padding-left: 50px;
 }
+
+.menus-distribution .form-check-input {
+  transform: scale(1.5);
+}

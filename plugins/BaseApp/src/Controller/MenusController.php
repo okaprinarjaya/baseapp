@@ -117,6 +117,40 @@ class MenusController extends AppController
     return $this->redirect(['action' => 'index']);
   }
 
+  public function menusDistribution()
+  {
+    $this->loadModel('BaseApp.RoleMenus');
+
+    if ($this->request->is('post')) {
+      $data = $this->request->getData();
+
+      if (isset($data['menu_id']) && count($data['menu_id']) > 0 && $data['menu_id'] !== '') {
+        $delete = $this->RoleMenus->query()
+          ->update()
+          ->set(['deleted' => 'Y'])
+          ->where(['role' => $data['role']])
+          ->execute();
+
+        if ($delete) {
+          $rows = array_map(function ($item) use ($data) {
+            return ['role' => $data['role'], 'menu_id' => $item];
+          }, $data['menu_id']);
+
+          $entities = $this->RoleMenus->newEntities($rows);
+          if ($this->RoleMenus->saveMany($entities)) {
+            $this->Flash->success(__('Successfuly distributing menu to a user\'s role.'));
+            return $this->redirect(['action' => 'menusDistribution']);
+          }
+        }
+      }
+
+      $this->Flash->error(__('The data could not be saved. Please, try again.'));
+    }
+
+    $menus = $this->Menus->find('threaded', ['conditions' => ['Menus.parent_id IS NOT NULL']]);
+    $this->set(compact('menus'));
+  }
+
   public function recover()
   {
     $this->Menus->recover();

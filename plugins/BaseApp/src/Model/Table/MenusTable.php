@@ -31,14 +31,14 @@ class MenusTable extends Table
      */
     public function initialize(array $config)
     {
-        parent::initialize($config);
+      parent::initialize($config);
 
-        $this->setTable('menus');
-        $this->setDisplayField('title');
-        $this->setPrimaryKey('id');
+      $this->setTable('menus');
+      $this->setDisplayField('title');
+      $this->setPrimaryKey('id');
 
-        $this->addBehavior('Timestamp');
-        $this->addBehavior('Tree');
+      $this->addBehavior('Timestamp');
+      $this->addBehavior('Tree');
     }
 
     /**
@@ -49,16 +49,16 @@ class MenusTable extends Table
      */
     public function validationDefault(Validator $validator)
     {
-        $validator
-            ->uuid('id')
-            ->allowEmpty('id', 'create');
+      $validator
+        ->uuid('id')
+        ->allowEmpty('id', 'create');
 
-        $validator
-            ->scalar('title')
-            ->maxLength('title', 32)
-            ->requirePresence('title', 'create')
-            ->notEmpty('title');
+      $validator
+        ->scalar('title')
+        ->maxLength('title', 32)
+        ->requirePresence('title', 'create')
+        ->notEmpty('title');
 
-        return $validator;
+      return $validator;
     }
 }
