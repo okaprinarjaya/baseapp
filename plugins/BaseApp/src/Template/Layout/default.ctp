@@ -1,4 +1,10 @@
 <?php
+use Cake\Cache\Cache;
+
+$menus = Cache::read('__MENUS__', '_myappcache_');
+$menus = $menus === false ? [] : json_decode($menus, true);
+$menus_html_str = createMenus($menus);
+
 echo $this->Html->docType();
 ?>
 
@@ -70,7 +76,7 @@ echo $this->Html->docType();
 
     <div class="app-body">
 
-      <?php echo $this->element('menunav'); ?>
+      <?php echo $this->element('menunav', ['menus_html_str' => $menus_html_str]); ?>
 
       <main class="main">
         <div class="container-fluid" style="padding-top: 10px;">

@@ -1,15 +1,12 @@
 <div class="sidebar menunav">
   <nav class="sidebar-nav">
-    <ul class="nav">
-      <li class="nav-title">Application Menus</li>
-
+    <?php echo $menus_html_str; ?>
+    <!-- <ul class="nav">
       <li class="nav-item">
         <a class="nav-link" href="/">
           <i class="nav-icon icon-drop"></i> Colors
         </a>
       </li>
-
-      <li class="nav-title">Base Manage</li>
 
       <li class="nav-item">
         <a class="nav-link" href="/users/users">
@@ -32,7 +29,7 @@
           </li>
         </ul>
       </li>
-    </ul>
+    </ul> -->
   </nav>
 
   <button class="sidebar-minimizer brand-minimizer" type="button"></button>

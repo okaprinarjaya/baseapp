@@ -13,6 +13,11 @@ use BaseApp\Controller\AppController;
 class MenusController extends AppController
 {
 
+  public function initialize()
+  {
+    parent::initialize();
+  }
+
   /**
    * Index method
    *

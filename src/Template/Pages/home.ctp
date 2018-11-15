@@ -73,7 +73,7 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
 
 <div class="row">
     <div class="columns large-6">
-        <h4>Environment</h4>
+        <h4><?php echo $vals_from_cache ?? 'Environment'; ?></h4>
         <ul>
         <?php if (version_compare(PHP_VERSION, '5.6.0', '>=')) : ?>
             <li class="bullet success">Your version of PHP is 5.6.0 or higher (detected <?= PHP_VERSION ?>).</li>

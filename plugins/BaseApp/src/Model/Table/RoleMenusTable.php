@@ -4,6 +4,8 @@ namespace BaseApp\Model\Table;
 use Cake\ORM\Query;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Cake\Cache\Cache;
+use Cake\ORM\TableRegistry;
 
 /**
  * RoleMenus Model
@@ -51,5 +53,28 @@ class RoleMenusTable extends Table
         ->notEmpty('role');
 
       return $validator;
+    }
+
+    public function fetchMenus()
+    {
+      $menus_cache = Cache::read('__MENUS__', '_myappcache_');
+      if ($menus_cache === false) {
+        $role = $_SESSION['Auth']['User']['role'];
+        $role_menus_table = TableRegistry::getTableLocator()->get('BaseApp.RoleMenus');
+        $menus_table = TableRegistry::getTableLocator()->get('BaseApp.Menus');
+
+        $ids_fetch = $role_menus_table->find(
+          'all',
+          ['conditions' => ['RoleMenus.role' => 'user', 'deleted' => 'N']]
+        );
+        $ids = \Cake\Utility\Hash::extract($ids_fetch->toArray(), '{n}.menu_id');
+        $menus_fetch = $menus_table->find(
+          'threaded',
+          ['conditions' => ['id IN' => $ids]]
+        );
+        $menus = $menus_fetch->toArray();
+
+        Cache::write('__MENUS__', json_encode($menus), '_myappcache_');
+      }
     }
 }

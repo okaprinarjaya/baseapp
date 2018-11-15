@@ -33,12 +33,12 @@
       foreach($menus as $menu):
         $children = count($menu->children);
         if ($children > 0):
-          $elements .= create_checkbox_option($this->Form, $menu->id, $menu->title, 'list-group-item active', 'icon-folder icons');
+          $elements .= createCheckboxOption($this->Form, $menu->id, $menu->title, 'list-group-item active', 'icon-folder icons');
           foreach ($menu->children as $submenu):
-            $elements .= create_checkbox_option($this->Form, $submenu->id, $submenu->title, 'list-group-item children-menu', 'icon-doc icons');
+            $elements .= createCheckboxOption($this->Form, $submenu->id, $submenu->title, 'list-group-item children-menu', 'icon-doc icons');
           endforeach;
         else:
-          $elements .= create_checkbox_option($this->Form, $menu->id, $menu->title, 'list-group-item active', 'icon-folder icons');
+          $elements .= createCheckboxOption($this->Form, $menu->id, $menu->title, 'list-group-item active', 'icon-folder icons');
         endif;
       endforeach;
 

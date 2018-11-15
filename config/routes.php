@@ -54,8 +54,6 @@ Router::scope('/', function (RouteBuilder $routes) {
      */
     $routes->connect('/', ['controller' => 'Pages', 'action' => 'display', 'home']);
 
-    $routes->connect('/halo', ['controller' => 'Pages', 'action' => 'display', 'halo']);
-
     /**
      * ...and connect the rest of 'Pages' controller's URLs.
      */

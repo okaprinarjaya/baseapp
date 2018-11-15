@@ -42,7 +42,7 @@ class AppController extends Controller
         parent::initialize();
 
         $this->loadComponent('RequestHandler', [
-            'enableBeforeRedirect' => false,
+          'enableBeforeRedirect' => false,
         ]);
         $this->loadComponent('Flash');
         $this->loadComponent('CakeDC/Users.UsersAuth');
