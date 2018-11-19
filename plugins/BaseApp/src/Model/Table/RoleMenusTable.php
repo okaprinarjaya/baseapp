@@ -52,6 +52,11 @@ class RoleMenusTable extends Table
         ->requirePresence('role', 'create')
         ->notEmpty('role');
 
+      $validator
+        ->scalar('menu_id')
+        ->requirePresence('menu_id', 'create')
+        ->notEmpty('menu_id');
+
       return $validator;
     }
 
@@ -70,7 +75,7 @@ class RoleMenusTable extends Table
         $ids = \Cake\Utility\Hash::extract($ids_fetch->toArray(), '{n}.menu_id');
         $menus_fetch = $menus_table->find(
           'threaded',
-          ['conditions' => ['id IN' => $ids]]
+          ['conditions' => ['id IN' => $ids], 'order' => ['Menus.rght' => 'ASC']]
         );
         $menus = $menus_fetch->toArray();
 

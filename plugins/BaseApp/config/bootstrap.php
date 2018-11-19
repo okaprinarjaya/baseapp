@@ -27,24 +27,34 @@ function createCheckboxOption($form_helper_obj, $id, $title, $li_class, $opt_ico
   return $opt;
 }
 
-function createMenus($menus, $level = 0)
+function createMenus($htmlHelperObject, $requestParams, $menus, $level = 0)
 {
   $str = $level == 0 ? '<ul class="nav">' : '<ul class="nav-dropdown-items">';
   foreach ($menus as $menu) {
     $menuHasChild = count($menu['children']);
     if ($menuHasChild > 0) {
-      $str .= '<li class="nav-item nav-dropdown">';
+      $open = requestParamsExistence($menu['children'], $requestParams) ? ' open' : '';
+      $str .= '<li class="nav-item nav-dropdown' . $open . '">';
       $str .= '<a class="nav-link nav-dropdown-toggle" href="#">';
       $str .= '<i class="nav-icon fa fa-th-list"></i> ' . $menu['title'];
       $str .= '</a>';
 
-      $str .= createMenus($menu['children'], $level + 1);
+      $str .= createMenus($htmlHelperObject, $requestParams, $menu['children'], $level + 1);
       $str .= '</li>';
     } else {
-      $str .= '<li class="nav-item">';
-      $str .= '<a class="nav-link" href="/">';
-      $str .= '<i class="nav-icon icon-drop"></i> ' . $menu['title'];
-      $str .= '</a>';
+      $isActive = $requestParams['plugin'] ==
+        $menu['plugin'] &&
+        $requestParams['controller'] == $menu['controller'];
+
+      $openLi = $isActive ? ' open' : '';
+      $activeA = $isActive ? ' active' : '';
+
+      $str .= '<li class="nav-item' . $openLi . '">';
+      $str .= $htmlHelperObject->link(
+        '<i class="nav-icon icon-drop"></i> ' . $menu['title'],
+        ['plugin' => $menu['plugin'], 'controller' => $menu['controller'], 'action' => $menu['action']],
+        ['class' => 'nav-link' . $activeA, 'escape' => false]
+      );
       $str .= '</li>';
     }
   }
@@ -52,4 +62,16 @@ function createMenus($menus, $level = 0)
   $str .= '</ul>';
 
   return $str;
+}
+
+function requestParamsExistence($rows, $requestParams)
+{
+  foreach ($rows as $row) {
+    if (
+      $row['plugin'] == $requestParams['plugin'] &&
+      $row['controller'] == $requestParams['controller']) {
+      return true;
+    }
+  }
+  return false;
 }

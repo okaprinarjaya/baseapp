@@ -59,6 +59,24 @@ class MenusTable extends Table
         ->requirePresence('title', 'create')
         ->notEmpty('title');
 
+      $validator
+        ->scalar('plugin')
+        ->maxLength('plugin', 64)
+        ->requirePresence('plugin', 'create')
+        ->notEmpty('plugin');
+
+      $validator
+        ->scalar('controller')
+        ->maxLength('controller', 64)
+        ->requirePresence('controller', 'create')
+        ->notEmpty('controller');
+
+      $validator
+        ->scalar('action')
+        ->maxLength('action', 64)
+        ->requirePresence('action', 'create')
+        ->notEmpty('action');
+
       return $validator;
     }
 }

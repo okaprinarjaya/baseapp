@@ -25,7 +25,10 @@ class MenusController extends AppController
    */
   public function index()
   {
-    $menus = $this->Menus->find('threaded', ['conditions' => ['Menus.parent_id IS NOT NULL']]);
+    $menus = $this->Menus->find('threaded', [
+      'conditions' => ['Menus.parent_id IS NOT NULL'],
+      'order' => ['Menus.rght' => 'ASC']
+    ]);
 
     $this->set(compact('menus'));
   }
@@ -161,4 +164,12 @@ class MenusController extends AppController
     $this->Menus->recover();
     return $this->redirect(['action' => 'index']);
   }
+
+  // public function testMove()
+  // {
+  //   $node = $this->Menus->get('89ee9fab-e393-4ff9-a9ea-8f07305a67cc');
+  //   $this->Menus->moveUp($node);
+
+  //   return $this->redirect(['action' => 'index']);
+  // }
 }

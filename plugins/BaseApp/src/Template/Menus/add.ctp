@@ -43,6 +43,54 @@
         </div>
       </div>
 
+      <div class="form-group row">
+        <label class="col-md-3 col-form-label" for="text-input">Plugin</label>
+        <div class="col-md-9">
+          <?php
+          echo $this->Form->text(
+            'plugin',
+            [
+              'required' => false,
+              'class' => 'form-control',
+              'autocomplete' => 'off'
+            ]
+          );
+          ?>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-md-3 col-form-label" for="text-input">Controller</label>
+        <div class="col-md-9">
+          <?php
+          echo $this->Form->text(
+            'controller',
+            [
+              'required' => false,
+              'class' => 'form-control',
+              'autocomplete' => 'off'
+            ]
+          );
+          ?>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-md-3 col-form-label" for="text-input">Action</label>
+        <div class="col-md-9">
+          <?php
+          echo $this->Form->text(
+            'action',
+            [
+              'required' => false,
+              'class' => 'form-control',
+              'autocomplete' => 'off'
+            ]
+          );
+          ?>
+        </div>
+      </div>
+
       <div class="form-actions">
         <?= $this->Form->button('<i class="fa fa-save"></i> ' . __d('CakeDC/Users', 'Save'), ['class' => 'btn btn-primary', 'escape' => false]) ?>
       </div>

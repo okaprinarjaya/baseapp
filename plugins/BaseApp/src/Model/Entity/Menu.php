@@ -18,7 +18,6 @@ use Cake\ORM\Entity;
  */
 class Menu extends Entity
 {
-
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
      *
@@ -29,10 +28,13 @@ class Menu extends Entity
      * @var array
      */
     protected $_accessible = [
-        'parent_id' => true,
-        'lft' => true,
-        'rght' => true,
-        'title' => true,
-        'created' => true
+      'parent_id' => true,
+      'lft' => true,
+      'rght' => true,
+      'title' => true,
+      'plugin' => true,
+      'controller' => true,
+      'action' => true,
+      'created' => true
     ];
 }

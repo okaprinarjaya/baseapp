@@ -3,7 +3,7 @@ use Cake\Cache\Cache;
 
 $menus = Cache::read('__MENUS__', '_myappcache_');
 $menus = $menus === false ? [] : json_decode($menus, true);
-$menus_html_str = createMenus($menus);
+$menus_html_str = createMenus($this->Html, $this->request->params, $menus);
 
 echo $this->Html->docType();
 ?>
